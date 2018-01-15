@@ -91,9 +91,14 @@ def problem_3():
 
 @app.route('/problem4form', methods=["GET","POST"])
 def problem_4():
+	smallform = """<form> Check your favorite primary color <br>
+  <input type="radio" name="color" value="male" checked> Red <br>
+  <input type="radio" name="color" value="female"> Yellow <br>
+  <input type="radio" name="color" value="other"> Blue
+</form>"""
 	formstr = """<br><br>
     <form action="http://localhost:5000/problem4form" method='POST'>
-    Enter Location for Coordinates (Ex: 'Ann Arbor') : <br>
+    Enter Location for geographic coordinates (Ex: 'Ann Arbor') : <br>
 <input type="text" name="location"> <br> 
 <input type="submit" value="Submit">
 """
@@ -109,9 +114,9 @@ def problem_4():
 		lat = googlelocation["results"][0]["geometry"]["location"]["lat"]
 		lng = googlelocation["results"][0]["geometry"]["location"]["lng"]
 		x = "latitude: " + str(lat) + """<br>""" + "longitude" + str(lng)
-		return formstr + """<br><br>""" + x
+		return smallform + formstr + """<br><br>""" + x
 	else:
-		return formstr + "Enter Again"
+		return smallform + formstr + "Enter Again"
 
 
 
